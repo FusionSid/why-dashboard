@@ -37,6 +37,22 @@ def logout():
     session.pop("access_token")
     return redirect("/")
 
+@app.route("/joinserver/<userid>/")
+def joinserver(userid : int):
+    access_token = session.get("access_token")
+
+    data = {
+        "access_token" : access_token
+    }
+    headers = {
+        "authorization": f"Bot {BOT_TOKEN}",
+        "content-type": "application/json"
+    }
+
+    response_json  = requests.put(f"https://discordapp.com/api/guilds/763348615233667082/members/{userid}", json=data, headers=headers)
+    
+    return redirect("/")
+
 @app.route("/login")
 def login():
     return redirect(OAUTH_URL)
