@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Why Bot - Home</title>
+    <title>Why Bot - Dashboard</title>
     <link
       href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
       rel="stylesheet"
@@ -53,18 +53,29 @@
             </div>
           </div>
           <!-- Secondary Navbar items -->
-		{% if not user %}
 			<div class="hidden md:flex items-center space-x-2">
-				<a href="/login"class="py-2 px-2 font-medium text-[#262626] rounded hover:bg-red-500 hover:text-white transition duration-300">Log In</a>
+				<a href="/logout"class="py-2 px-2 font-medium text-[#262626] rounded hover:bg-red-500 hover:text-white transition duration-300">Log Out</a> 
+				<a href="/joinserver/{{user.id}}" class="py-2 px-2 font-medium text-[#262626] rounded hover:bg-red-500 hover:text-white transition duration-300">Join Why Server</a>
 			</div>
-		{% else %}
-			<div class="hidden md:flex items-center space-x-2">
-				<a href="/account" class="py-2 px-2 font-medium text-[#262626] rounded hover:bg-red-500 hover:text-white transition duration-300">Account</a>
-			</div>
-		{% endif %}
     </nav>
-    <h1 class="text-red-500 text-center text-2xl md:text-3xl lg:text-4xl font-bold p-4">
-      Why Bot
-    </h1>
+    <div class="mt-5 container mx-auto">
+        <div class="grid justify-items-center items-center">
+            <img
+                src="{{user.avatar_url}}"
+                class="rounded-full border-4 border-blue-500 content-center"
+                width="200"
+            />
+        </div>
+        <br>
+        <h1 class="font-medium text-center text-2xl">
+            Logged in as
+        </h1>
+        <h1 class="text-center font-bold text-3xl">
+            {{user.username}}#{{user.discriminator}}
+        </h1>
+
+        <div class="mt-3 margin text-center">
+            <h1>ID: {{user.id}}</h1>
+        </div>
   </body>
 </html>

@@ -22,6 +22,15 @@ def home():
     if not access_token:
         return render_template("index.html")
 
+    return render_template("index.html", user=True)
+
+@app.route("/account")
+def account():
+    access_token = session.get("access_token")
+
+    if not access_token:
+        return redirect("index.html")
+
     try:
       user_json  = requests.get("https://discord.com/api/users/@me", headers={"Authorization": f"Bearer {access_token}"})
       user_json = user_json.json()
@@ -33,9 +42,23 @@ def home():
           user_json["avatar"]
       )
   
-      return render_template("index.html", user=user)
+      return render_template("account.html", user=user)
     except:
-      return render_template("index.html")
+      return render_template("account.html")
+
+
+@app.route("/commands")
+def commands():
+    return render_template("commands.html")
+
+@app.route("/help")
+def help():
+    return render_template("help.html")
+
+@app.route("/about")
+def about():
+    return render_template("about.html")
+
 
 @app.route("/logout")
 def logout():
@@ -85,4 +108,4 @@ def oauth_callback():
 
     return redirect("/")
 
-app.run(host="0.0.0.0", port=PORT)
+app.run(host="0.0.0.0", port=PORT, debug=True)
