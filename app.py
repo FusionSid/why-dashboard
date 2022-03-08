@@ -47,15 +47,15 @@ def account():
       return render_template("account.html")
 
 
-@app.route("/commands")
+@app.route("/commands/")
 def commands():
     return render_template("commands.html")
 
-@app.route("/help")
+@app.route("/help/")
 def help():
     return render_template("help.html")
 
-@app.route("/about")
+@app.route("/about/")
 def about():
     return render_template("about.html")
 
@@ -106,6 +106,6 @@ def oauth_callback():
 
     session["access_token"] = get_access_token["access_token"]
 
-    return redirect("/")
+    return redirect("/account")
 
-app.run(host="0.0.0.0", port=PORT, debug=True)
+app.run(host="0.0.0.0", port=PORT)
