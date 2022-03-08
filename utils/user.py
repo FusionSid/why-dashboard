@@ -9,7 +9,7 @@ class User():
         self.avatar_url = f"https://cdn.discordapp.com/avatars/{_id}/{avatar_hash}.png?size=1024"
 
 
-def get_user(access_token):
+def get_user(access_token, BOT_TOKEN):
     user_json  = requests.get("https://discord.com/api/users/@me", headers={"Authorization": f"Bearer {access_token}"})
     user_json = user_json.json()
 
@@ -20,4 +20,16 @@ def get_user(access_token):
         user_json["avatar"]
     )
     
-    return user
+    user_guilds  = requests.get("https://discord.com/api/users/@me/guilds", headers={"Authorization": f"Bearer {access_token}"}).json()
+
+    bot_guilds = requests.get("https://discord.com/api/users/@me/guilds", headers={"Authorization": f"Bot {BOT_TOKEN}"}).json()
+    bot_guild_ids = [x["id"] for x in bot_guilds]
+
+    mutual_guilds = []
+
+    for i in user_guilds:
+        if i["id"] in bot_guild_ids:
+            mutual_guilds.append(i)
+
+
+    return [user, mutual_guilds]

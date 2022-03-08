@@ -24,8 +24,8 @@ def account():
         return redirect("index.html")
 
     try:
-        user = get_user(access_token)
-        return render_template("account.html", user=user)
+        user = get_user(access_token, BOT_TOKEN)
+        return render_template("account.html", user=user[0], mutual=user[1])
     except:
         return render_template("account.html")
 
