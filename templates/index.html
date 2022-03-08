@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Why Bot</title>
+		<link
+			href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+			rel="stylesheet"
+		/>
+	</head>
+	<body class="overflow-hidden">
+		<div class="flex items-center justify-center h-screen">
+			{% if not user %}
+			<div class="text-center">
+				<h1 class="font-bold text-6xl mb-2">Why Bot</h1>
+				<h1 class="text-3xl mb-8">Login with discord</h1>
+				<a href="/login" class="">
+					<button
+						class="
+							bg-blue-500
+							hover:bg-blue-600
+							text-white
+							font-bold
+							py-2
+							px-4
+							rounded
+						"
+					>
+						Log In
+					</button></a
+				>
+			</div>
+			{% else %}
+			<div>
+				<div>
+					<img
+						src="{{user.avatar_url}}"
+						class="rounded-full border-4 border-blue-500"
+						width="200"
+					/>
+				</div>
+				<div class="mt-5 container mx-auto">
+					<h1 class="font-medium text-center text-2xl">
+						Logged in as
+					</h1>
+					<h1 class="text-center font-bold text-3xl">
+						{{user.username}}#{{user.discriminator}}
+					</h1>
+
+					<div class="mt-3 margin">
+						<h1>ID: {{user.id}}</h1>
+					</div>
+					<div class="mt-5 text-center">
+						<a href="/logout" class="">
+							<button
+								class="
+									bg-blue-500
+									hover:bg-blue-600
+									text-white
+									font-bold
+									py-2
+									px-4
+									rounded
+								"
+							>
+								Logout
+							</button></a
+						>
+					</div>
+				</div>
+			</div>
+			{% endif %}
+	</body>
+</html>
