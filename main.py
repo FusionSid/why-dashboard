@@ -25,7 +25,7 @@ def account():
 
     try:
         user = get_user(access_token, BOT_TOKEN)
-        return render_template("account.html", user=user[0], mutual=user[1])
+        return render_template("account.html", user=user[0], mutual=', '.join(i['name'] for i in user[1]))
     except:
         return render_template("account.html")
 
