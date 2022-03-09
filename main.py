@@ -21,7 +21,7 @@ def account():
     access_token = session.get("access_token")
 
     if not access_token:
-        return redirect("index.html")
+        return redirect("/")
 
     try:
         user = get_user(access_token, BOT_TOKEN)
@@ -29,6 +29,21 @@ def account():
     except:
         return render_template("account.html")
 
+
+@app.route("/account/embed")
+def embed():
+    access_token = session.get("access_token")
+
+    if not access_token:
+        return redirect("/")
+    
+    return render_template("embed.html")
+
+    # try:
+    #     user = get_user(access_token, BOT_TOKEN)
+    #     return render_template("account.html", user=user[0], mutual=', '.join(i['name'] for i in user[1]))
+    # except:
+    #     return render_template("account.html")
 
 @app.route("/logout")
 def logout():
