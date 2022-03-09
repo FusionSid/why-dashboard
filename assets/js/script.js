@@ -16,8 +16,8 @@ var params = new URL(location).searchParams,
     onlyEmbed = hasParam('embed'),
     activeFields, colNum = 1, num = 0, validationError,
     allowPlaceholders = hasParam('placeholders'),
-    autoUpdateURL = localStorage.getItem('autoUpdateURL'),
-    autoParams = hasParam('autoparams') || localStorage.getItem('autoParams'),
+    autoUpdateURL = true,
+    autoParams = true,
     toggleStored = item => {
         const found = localStorage.getItem(item);
         if (!found) return localStorage.setItem(item, true);
